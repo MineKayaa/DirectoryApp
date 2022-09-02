@@ -10,8 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DirectoryApp.DAL;
+using DirectoryApp.DAL.Concrete;
+using DirectoryApp.DAL.Interface;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.EntityFrameworkCore;
 
-namespace DirectoryApp
+namespace DirectoryApp.API
 {
     public class Startup
     {
@@ -25,13 +30,13 @@ namespace DirectoryApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMemoryCache();
-            services.AddSession(options => {
-                    options.IdleTimeout = TimeSpan.FromDays(2);
-                }
-            );
+            services.AddControllers();
 
-
+            services.AddDbContext<ModelContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("DbConnection"));
+            });
+            services.AddTransient<IClientDAL, ClientDAL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +47,7 @@ namespace DirectoryApp
                 app.UseDeveloperExceptionPage();
             }
 
+        
             app.UseHttpsRedirection();
 
             app.UseRouting();

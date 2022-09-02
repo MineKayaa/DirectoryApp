@@ -6,7 +6,7 @@ using DirectoryApp.Entity.ModelDb;
 
 namespace DirectoryApp.DAL.Interface
 {
-    public interface IClientDAL : IRepository<Client>
+    public interface IContactInfoDAL : IRepository<ContactInfo>
     {
     }
 }

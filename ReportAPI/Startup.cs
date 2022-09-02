@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using DirectoryApp.DAL;
 
 namespace ReportAPI
 {
@@ -26,6 +28,12 @@ namespace ReportAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<ModelContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("DbConnection"));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,6 @@
 using System;
 
-namespace ContactAPI
+namespace DirectoryApp.API
 {
     public class WeatherForecast
     {

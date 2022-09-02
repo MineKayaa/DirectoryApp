@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DirectoryApp.Entity;
 using DirectoryApp.Entity.ModelDb;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +29,8 @@ namespace DirectoryApp.DAL
         public virtual DbSet<ContactInfo> ContactInfo { get; set; }
         public virtual DbSet<InfoType> InfoType { get; set; }
 
-     
+         
+
 
     }
 }
